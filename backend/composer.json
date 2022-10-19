@@ -1,0 +1,107 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0.2",
+        "ajthinking/laravel-postgis": "^6.0.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "inertiajs/inertia-laravel": "^0.5.4",
+        "itsgoingd/clockwork": "^5.1",
+        "laravel/framework": "^9.0",
+        "laravel/horizon": "^5.7",
+        "laravel/jetstream": "^2.4",
+        "laravel/sanctum": "^2.11",
+        "laravel/slack-notification-channel": "^2.4",
+        "laravel/telescope": "^4.6",
+        "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "moneyphp/money": "^4.0",
+        "owen-it/laravel-auditing": "^12.0",
+        "predis/predis": "^1.1",
+        "propaganistas/laravel-phone": "^4.3",
+        "pusher/pusher-php-server": "^7.0",
+        "ralouphie/mimey": "^1.0",
+        "rap2hpoutre/fast-excel": "^3.1",
+        "rap2hpoutre/laravel-log-viewer": "^2.1",
+        "spatie/laravel-query-builder": "^5.0.1",
+        "staudenmeir/belongs-to-through": "^2.11",
+        "staudenmeir/eloquent-has-many-deep": "^1.14",
+        "tightenco/ziggy": "^1.0",
+        "twilio/sdk": "^6.31"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
+        "barryvdh/laravel-ide-helper": "^2.10",
+        "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.2",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^0.7.15",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.0",
+        "vimeo/psalm": "^4.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "fix": "vendor/bin/php-cs-fixer fix",
+        "stan": "vendor/bin/phpstan analyse",
+        "scan": "vendor/bin/psalm -c psalm.xml --show-info=true",
+        "scan-dry": "vendor/bin/psalm -c psalm.xml --alter --issues=MissingReturnType,InvalidReturnType --dry-run",
+        "scan-fix": "vendor/bin/psalm -c psalm.xml --alter --issues=MissingReturnType,InvalidReturnType",
+        "ide-helper": [
+            "@php artisan ide-helper:eloquent",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models --nowrite"
+        ],
+        "precommit": [
+            "composer fix",
+            "composer scan-fix",
+            "composer ide-helper"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
